@@ -1,5 +1,16 @@
 version: '3.7'
 services:
+  db:
+    image: postgres:12.6-alpine
+    container_name: db
+    volumes:
+      - postgres_data_volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
   server:
     build:
       context: ./blog-graphql-server
@@ -12,6 +23,8 @@ services:
       - ./blog-graphql-server/.env
     ports:
       - "8000:8000"
+    depends_on:
+      - db
   client:
     build:
       context: ./blog-graphql-client
@@ -22,3 +35,5 @@ services:
       - /work/frontend/node_modules
     ports:
       - "3000:3000"
+volumes:
+  postgres_data_volume:
