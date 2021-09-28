@@ -1,3 +1,6 @@
 [submodule "blog-graphql-server"]
 	path = blog-graphql-server
 	url = https://github.com/cygnu/blog-graphql-server
+[submodule "blog-graphql-client"]
+	path = blog-graphql-client
+	url = https://github.com/cygnu/blog-graphql-client
