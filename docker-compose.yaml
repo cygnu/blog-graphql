@@ -9,8 +9,8 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${DATABASE_USER}
-      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
   server:
     build:
       context: ./blog-graphql-server
@@ -20,7 +20,7 @@ services:
     volumes:
       - ./blog-graphql-server:/work/backend
     env_file:
-      - ./blog-graphql-server/.env
+      - ./.env
     ports:
       - "8000:8000"
     depends_on:
