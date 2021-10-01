@@ -29,10 +29,16 @@ log-frontend:
 	docker compose logs client
 log-frontend-watch:
 	docker compose logs --follow client
+log-db:
+	docker compose logs db
+log-db-watch:
+	docker compose logs --follow db
 backend:
 	docker compose exec server /bin/sh
 frontend:
 	docker compose exec client ash
+db:
+	docker compose exec db ash
 make-migrations:
 	docker compose exec server python manage.py makemigrations
 migrate:
@@ -53,3 +59,5 @@ yarn-start:
 	docker compose exec client yarn start
 yarn-watch:
 	docker compose exec client yarn watch
+postgres:
+	docker compose exec db psql -U postgres
