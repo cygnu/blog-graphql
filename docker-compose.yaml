@@ -20,7 +20,7 @@ services:
     volumes:
       - ./blog-graphql-server:/work/backend
     env_file:
-      - ./.env
+      - ./blog-graphql-server/.env
     ports:
       - "8000:8000"
     depends_on:
