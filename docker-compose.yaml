@@ -15,7 +15,7 @@ services:
     build:
       context: ./blog-graphql-server
       dockerfile: Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python3 manage.py runserver 0.0.0.0:8000
     container_name: backend
     volumes:
       - ./blog-graphql-server:/work/backend
