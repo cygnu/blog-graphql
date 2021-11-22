@@ -48,7 +48,8 @@ services:
       - ./blog-graphql-client/nginx/:/etc/nginx/conf.d
       - /work/frontend/node_modules
     ports:
-      - "3000:3000"
+      - "80:80"
+      - "443:443"
 volumes:
   postgres_data_volume:
   static_volume:
