@@ -17,6 +17,10 @@ destroy:
 	docker compose --file docker-compose.yaml down --rmi all --volumes --remove-orphans
 destroy-volumes:
 	docker compose --file docker-compose.yaml down --volumes --remove-orphans
+recreate:
+	@make destroy
+	@make build
+	@make up
 logs:
 	docker compose logs
 logs-watch:
