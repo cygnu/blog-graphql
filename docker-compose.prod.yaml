@@ -20,7 +20,7 @@ services:
     build:
       context: ./blog-graphql-server
       dockerfile: Dockerfile
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: gunicorn --bind :8000 blog.wsgi:application
     container_name: backend
     volumes:
       - ./blog-graphql-server:/work/backend
