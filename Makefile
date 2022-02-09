@@ -1,22 +1,25 @@
+DOCKER_DEV_FILE = docker-compose.yaml
+DOCKER_PROD_FILE = docker-compose.prod.yaml
+
 build:
-	docker compose --file docker-compose.yaml build --force-rm --no-cach
+	docker compose --file $(DOCKER_DEV_FILE) build --force-rm --no-cach
 up:
-	docker compose --file docker-compose.yaml up --detach
+	docker compose --file $(DOCKER_DEV_FILE) up --detach
 ps:
 	docker compose ps
 images:
 	docker compose images
 stop:
-	docker compose --file docker-compose.yaml stop
+	docker compose --file $(DOCKER_DEV_FILE) stop
 down:
-	docker compose --file docker-compose.yaml down --remove-orphans
+	docker compose --file $(DOCKER_DEV_FILE) down --remove-orphans
 restart:
 	@make down
 	@make up
 destroy:
-	docker compose --file docker-compose.yaml down --rmi all --volumes --remove-orphans
+	docker compose --file $(DOCKER_DEV_FILE) down --rmi all --volumes --remove-orphans
 destroy-volumes:
-	docker compose --file docker-compose.yaml down --volumes --remove-orphans
+	docker compose --file $(DOCKER_DEV_FILE) down --volumes --remove-orphans
 recreate:
 	@make destroy
 	@make build
