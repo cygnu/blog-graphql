@@ -1,14 +1,16 @@
 provider "aws" {
-  region = var.aws_region
+  region  = var.aws_region
+  profile = var.aws_profile
 }
 
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "3.12.0"
+  # insert the 8 required variables here
   name = var.aws_vpc_name
   cidr = var.aws_vpc_cidr
 
-  azs             = var.aws_vpc_azs
+  azs             = ["${var.aws_region}a", "${var.aws_region}c"]
   private_subnets = var.aws_vpc_private_subnets
   public_subnets  = var.aws_vpc_public_subnets
 
@@ -16,7 +18,7 @@ module "vpc" {
   enable_vpn_gateway = true
 
   tags = {
-    Terraform = "true"
-    Environment = "dev"
+    Terraform   = "true"
+    Environment = "prod"
   }
 }
