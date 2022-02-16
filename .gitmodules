@@ -4,3 +4,6 @@
 [submodule "blog-graphql-client"]
 	path = blog-graphql-client
 	url = https://github.com/cygnu/blog-graphql-client
+[submodule "modules/vpc"]
+	path = modules/vpc
+	url = https://github.com/terraform-aws-modules/terraform-aws-vpc.git
