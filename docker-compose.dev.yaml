@@ -1,0 +1,77 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:12.6-alpine
+    container_name: db
+    volumes:
+      - postgres_data_volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - "5432:5432"
+    networks:
+      - back_tier
+
+  server:
+    build:
+      context: ./blog-graphql-server
+      dockerfile: Dockerfile
+    command: gunicorn --bind :8000 blog.wsgi:application
+    container_name: backend
+    volumes:
+      - ./blog-graphql-server:/work/backend
+    env_file:
+      - ./blog-graphql-server/.env
+    ports:
+      - "8000:8000"
+    networks:
+      - back_tier
+    depends_on:
+      - db
+
+  nginx-server:
+    build:
+      context: ./blog-graphql-server/nginx
+      dockerfile: Dockerfile
+    container_name: nginx-backend
+    volumes:
+      - static_volume:/usr/share/static
+      - media_volume:/usr/share/media
+    ports:
+      - "8080:80"
+    networks:
+      - back_tier
+    depends_on:
+      - server
+
+  client:
+    build:
+      context: ./blog-graphql-client
+      dockerfile: Dockerfile.dev
+    container_name: frontend
+    volumes:
+      - ./blog-graphql-client:/work/frontend
+      - ./blog-graphql-client/nginx/:/etc/nginx/conf.d
+      - /work/frontend/node_modules
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - front_tier
+
+volumes:
+  postgres_data_volume:
+  static_volume:
+  media_volume:
+
+networks:
+  front_tier:
+    driver: bridge
+    name: front_tier
+  back_tier:
+    driver: bridge
+    name: back_tier

@@ -1,4 +1,5 @@
-DOCKER_DEV_FILE = docker-compose.yaml
+DOCKER_FILE = docker-compose.yaml
+DOCKER_DEV_FILE = docker-compose.dev.yaml
 DOCKER_PROD_FILE = docker-compose.prod.yaml
 
 build:
