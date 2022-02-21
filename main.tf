@@ -14,8 +14,12 @@ module "vpc" {
   private_subnets = var.aws_vpc_private_subnets
   public_subnets  = var.aws_vpc_public_subnets
 
-  enable_nat_gateway = true
-  enable_vpn_gateway = true
+  # Single NAT Gateway
+  enable_nat_gateway     = true
+  single_nat_gateway     = true
+  one_nat_gateway_per_az = false
+
+  # enable_vpn_gateway = true
 
   tags = {
     Terraform   = "true"
