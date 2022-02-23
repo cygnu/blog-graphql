@@ -1,8 +1,3 @@
-provider "aws" {
-  region  = var.aws_region
-  profile = var.aws_profile
-}
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.12.0"
