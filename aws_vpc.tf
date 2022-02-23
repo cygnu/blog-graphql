@@ -2,7 +2,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.12.0"
   # insert the 8 required variables here
-  name = var.aws_vpc_name
+  name = var.name_prefix
   cidr = var.aws_vpc_cidr
 
   azs             = ["${var.aws_region}a", "${var.aws_region}c"]
@@ -17,6 +17,7 @@ module "vpc" {
   # enable_vpn_gateway = true
 
   tags = {
+    Name        = "${var.tag_name}-vpc"
     Terraform   = "true"
     Environment = "prod"
   }
