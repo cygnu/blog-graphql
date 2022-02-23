@@ -1,0 +1,48 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ]
+    },
+    {
+      "name": "db",
+      "image": "",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 5432,
+          "hostPort": 5432
+        }
+      ]
+    },
+    {
+      "name": "nginx",
+      "image": "",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 80
+        }
+      ]
+    },
+    {
+      "name": "server",
+      "image": "",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "hostPort": 8000
+        }
+      ]
+    }
+  ]
+}
