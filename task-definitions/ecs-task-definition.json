@@ -1,8 +1,8 @@
 {
   "containerDefinitions": [
     {
-      "name": "client",
-      "image": "",
+      "name": "app_client",
+      "image": "${APP_CLIENT_IMAGE}",
       "essential": true,
       "portMappings": [
         {
@@ -12,35 +12,24 @@
       ]
     },
     {
-      "name": "db",
-      "image": "",
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 5432,
-          "hostPort": 5432
-        }
-      ]
-    },
-    {
-      "name": "nginx",
-      "image": "",
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 8080,
-          "hostPort": 80
-        }
-      ]
-    },
-    {
-      "name": "server",
-      "image": "",
+      "name": "app_server",
+      "image": "${APP_SERVER_IMAGE}",
       "essential": true,
       "portMappings": [
         {
           "containerPort": 8000,
           "hostPort": 8000
+        }
+      ]
+    },
+    {
+      "name": "web_server",
+      "image": "${WEB_SERVER_IMAGE}",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080
         }
       ]
     }
