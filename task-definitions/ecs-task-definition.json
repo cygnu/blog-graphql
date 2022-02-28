@@ -1,37 +1,35 @@
-{
-  "containerDefinitions": [
-    {
-      "name": "app_client",
-      "image": "${APP_CLIENT_IMAGE}",
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 80,
-          "hostPort": 80
-        }
-      ]
-    },
-    {
-      "name": "app_server",
-      "image": "${APP_SERVER_IMAGE}",
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 8000,
-          "hostPort": 8000
-        }
-      ]
-    },
-    {
-      "name": "web_server",
-      "image": "${WEB_SERVER_IMAGE}",
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 8080,
-          "hostPort": 8080
-        }
-      ]
-    }
-  ]
-}
+[
+  {
+    "name": "app_client",
+    "image": "${APP_CLIENT_IMAGE}",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ] 
+  },
+  {
+    "name": "app_server",
+    "image": "${APP_SERVER_IMAGE}",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8000,
+        "hostPort": 8000
+      }
+    ]
+  },
+  {
+    "name": "web_server",
+    "image": "${WEB_SERVER_IMAGE}",
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 8080,
+        "hostPort": 8080
+      }
+    ]
+  }
+]
